@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sucio Records</title>
+<meta name="description" content="Sello de lofi y hip-hop abstracto. Cali, Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+/* tokens, type, buttons and chips: assets/brand.css · rules: DESIGN.md */
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 32px}}
+h2{font-size:clamp(44px,8vw,92px)}
+h3{font-size:28px}
+.ph{outline:1.5px dashed #c0392b;outline-offset:3px;border-radius:3px}
+.ph-note{font-family:var(--mono);font-size:11px;color:#a5281b;letter-spacing:.04em}
+
+/* ---------- header ---------- */
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.top .wrap>*{flex:none}
+.top .brand img{height:40px;width:auto}
+.top nav{display:none;gap:22px}
+.top nav a{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.08em;text-decoration:none}
+.top nav a:hover{color:var(--moss-deep);text-decoration:underline;text-underline-offset:4px}
+.top .btn{padding:9px 12px;font-size:12px}
+@media(min-width:900px){.top nav{display:flex}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:40px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:start}
+.hero-grid>*,.release>*,.gig>*{min-width:0}
+@media(min-width:900px){.hero-grid{grid-template-columns:1.1fr .9fr;gap:48px}.hero-side{padding-top:24px}}
+.hero .logo{width:min(340px,70%);margin-bottom:14px}
+.hero .tag{font-family:var(--mono);font-size:14px;letter-spacing:.06em;margin-bottom:28px;color:var(--ink-soft)}
+.event{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:24px;position:relative}
+.event .kicker{color:var(--sun)}
+.event h1{font-size:clamp(52px,9vw,104px);margin:10px 0 6px;color:var(--paper)}
+.event .with{font-family:var(--mono);font-size:15px;margin-bottom:18px}
+.event dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:0 0 22px;font-size:15px}
+.event dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:#a9a597;padding-top:3px}
+.event dd{margin:0}
+.event .cta{display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:520px){.event{padding:20px 16px}.event .cta .btn{flex:1 1 100%;justify-content:center}.top .brand img{height:34px}}
+.event .cta .btn.ghost{color:var(--paper)}
+.event .org{margin-top:16px;font-size:12px;font-family:var(--mono);color:#a9a597}
+.flyer{position:relative;transform:rotate(2deg);border-radius:var(--radius);overflow:hidden;box-shadow:0 0 0 1.5px var(--ink),10px 10px 0 var(--drain)}
+.flyer img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.flyer figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-family:var(--mono);font-size:12px;padding:28px 14px 10px}
+.hero-photo{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.hero-photo img{border-radius:var(--radius);aspect-ratio:1;object-fit:cover;box-shadow:0 0 0 1.5px var(--ink)}
+
+/* the drain: street grate with plants growing out of it */
+.drain-band{position:relative;margin-top:56px;height:210px}
+.drain-band img{position:absolute;left:0;bottom:0;width:100%;height:100%}
+.street{background:var(--drain-deep)}
+
+/* ---------- agenda strip ---------- */
+.agenda{background:var(--drain-deep);color:var(--paper);padding:8px 0 64px}
+.agenda .head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.agenda h2{color:var(--leaf)}
+.gigs{display:grid;gap:14px}
+.gig{display:grid;grid-template-columns:84px 1fr;gap:18px;align-items:center;padding:16px;border-radius:var(--radius);background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(231,226,214,.18)}
+@media(min-width:720px){.gig{grid-template-columns:110px 1fr auto}}
+.gig .date{font-family:var(--display);font-size:42px;line-height:.9;color:var(--sun);text-transform:uppercase}
+.gig .date small{display:block;font-family:var(--mono);font-size:12px;color:#a9b8c2;letter-spacing:.1em}
+.gig h3{font-size:24px;margin-bottom:4px}
+.gig p{margin:0;font-size:14px;color:#c8d2d8}
+.gig .state{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;padding:6px 10px;border-radius:999px;justify-self:start;grid-column:2}
+@media(min-width:720px){.gig .state{grid-column:auto;justify-self:end}}
+.state.on{background:var(--leaf);color:var(--ink)}
+.state.off{box-shadow:inset 0 0 0 1px rgba(231,226,214,.4);color:#a9b8c2}
+
+/* ---------- sections ---------- */
+section.block{padding:88px 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;margin-bottom:36px}
+.sec-head p{max-width:440px;margin:0;color:var(--ink-soft)}
+.sec-head .kicker{display:block;margin-bottom:10px;color:var(--moss-deep)}
+
+/* shop */
+.shop-grid{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:620px){.shop-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.shop-grid{grid-template-columns:repeat(4,1fr)}}
+.item{display:flex;flex-direction:column;background:var(--paper-2);border-radius:var(--radius);overflow:hidden;box-shadow:0 0 0 1.5px var(--ink)}
+.item .pic{position:relative;aspect-ratio:1;overflow:hidden;background:var(--ink)}
+.item .pic img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.item:hover .pic img{transform:scale(1.04)}
+.item .badge{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--sun);color:var(--ink);padding:5px 8px;border-radius:3px}
+.item .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.item .fmt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em}
+.item h3{font-size:26px}
+.item .note{font-size:14px;color:var(--ink-soft);margin:0}
+.item .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:12px;gap:8px}
+.item .price{font-family:var(--mono);font-weight:700;font-size:13px;white-space:nowrap}
+.item .row .btn{padding:9px 12px;font-size:12px}
+.pay-strip{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:18px;border-radius:var(--radius);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.pay-strip p{margin:0;flex:1 1 260px;font-size:15px}
+.pay-strip p .ph{display:inline-block;margin-top:6px}
+
+/* artists */
+.artists{background:var(--moss-deep);color:var(--paper);position:relative}
+.artists .sec-head p{color:#d6dccb}
+.artists .sec-head .kicker{color:var(--sun)}
+.roster{display:grid;gap:18px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.roster{grid-template-columns:repeat(3,1fr)}}
+.artist{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--drain-deep);box-shadow:0 0 0 1.5px rgba(231,226,214,.25);text-decoration:none;display:flex;flex-direction:column}
+.artist .face{aspect-ratio:1;overflow:hidden;position:relative;background:var(--drain)}
+.artist .face img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05)}
+.artist .face .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:clamp(64px,12vw,120px);color:var(--leaf);opacity:.9}
+.artist .face .mono::after{content:"";position:absolute;inset:18%;border-radius:4px;background:repeating-linear-gradient(90deg,transparent 0 14px,rgba(15,42,58,.55) 14px 22px);mix-blend-mode:multiply}
+.artist .meta{padding:14px;display:flex;flex-direction:column;gap:4px}
+.artist h3{font-size:26px;color:var(--paper)}
+.artist .role{font-family:var(--mono);font-size:12px;color:#c9d3bb;text-transform:uppercase;letter-spacing:.06em}
+.artist .links{display:flex;gap:12px;margin-top:6px;font-family:var(--mono);font-size:12px}
+.artist .links a{color:var(--sun);text-decoration:none}
+.artist .links a:hover{text-decoration:underline}
+.artist .flag{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--petal);color:var(--ink);padding:4px 7px;border-radius:3px;z-index:2}
+
+/* catalog */
+.cat{display:grid;gap:28px}
+.release{display:grid;gap:22px;padding:22px;border-radius:var(--radius);box-shadow:0 0 0 1.5px var(--ink);background:var(--paper)}
+@media(min-width:860px){.release{grid-template-columns:320px 1fr}}
+.release .cover{align-self:start;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.release .cover img{width:100%;aspect-ratio:1;object-fit:cover}
+.release h3{font-size:clamp(40px,6vw,64px)}
+.release .facts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
+.tracks{columns:2;column-gap:24px;font-family:var(--mono);font-size:13px;margin:0 0 18px;padding:0;list-style:none;counter-reset:t}
+@media(min-width:620px){.tracks{columns:3}}
+.tracks li{counter-increment:t;break-inside:avoid;padding:2px 0}
+.tracks li::before{content:counter(t,decimal-leading-zero) "  ";color:var(--moss)}
+.bc-embed{border:0;width:100%;height:120px;border-radius:4px}
+.credits{font-size:13px;color:var(--ink-soft);font-family:var(--mono)}
+.release.dark{background:var(--ink);color:var(--paper)}
+.release.dark .chip{box-shadow:inset 0 0 0 1px var(--paper)}
+.release.dark .credits{color:#a9a597}
+.mini-releases{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:720px){.mini-releases{grid-template-columns:1fr 1fr}}
+.mini{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;padding:14px;border-radius:var(--radius);box-shadow:0 0 0 1.5px var(--ink)}
+.mini img{border-radius:4px;aspect-ratio:1;object-fit:cover}
+.mini h3{font-size:24px;margin-bottom:4px}
+.mini p{margin:0;font-size:14px;color:var(--ink-soft)}
+
+/* blog */
+.posts{display:grid;gap:22px;grid-template-columns:1fr}
+@media(min-width:860px){.posts{grid-template-columns:1.3fr 1fr 1fr}}
+.post{display:flex;flex-direction:column;text-decoration:none;border-radius:var(--radius);overflow:hidden;background:var(--paper-2);box-shadow:0 0 0 1.5px var(--ink)}
+.post img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.post .body{padding:18px}
+.post .kicker{color:var(--moss-deep)}
+.post h3{font-size:30px;margin:8px 0 10px}
+.post p{font-size:15px;color:var(--ink-soft);margin:0}
+
+/* manifesto */
+.manifesto{background:var(--drain);color:var(--paper);padding:80px 0;position:relative;overflow:hidden}
+.manifesto blockquote{margin:0;font-family:var(--display);text-transform:uppercase;font-size:clamp(38px,6.4vw,84px);line-height:.98;max-width:980px}
+.manifesto blockquote em{font-style:normal;color:var(--leaf)}
+.manifesto cite{display:block;margin-top:22px;font-family:var(--mono);font-style:normal;font-size:13px;color:#b8cad6}
+
+/* footer */
+footer{background:var(--ink);color:var(--paper);padding:56px 0 28px}
+.foot{display:grid;gap:32px}
+@media(min-width:860px){.foot{grid-template-columns:1.2fr 1fr 1fr 1fr}}
+.foot img.logo{width:180px;filter:invert(1)}
+.foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a9a597;margin:0 0 12px;font-weight:400}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--leaf)}
+.legal{margin-top:40px;padding-top:18px;border-top:1px solid rgba(231,226,214,.18);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12px;color:#8d897d}
+
+/* nequi dialog */
+dialog{border:0;border-radius:var(--radius);padding:0;max-width:420px;width:calc(100% - 32px);background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink),10px 10px 0 #e5007d}
+dialog::backdrop{background:rgba(15,42,58,.7)}
+dialog .in{padding:24px}
+dialog h3{font-size:34px;margin-bottom:12px}
+dialog ol{padding-left:20px;margin:0 0 18px;font-size:15px}
+dialog .num{font-family:var(--mono);font-size:22px;font-weight:700;padding:12px;background:var(--paper-2);border-radius:4px;text-align:center;margin-bottom:16px}
+dialog .row{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){.item .pic img{transition:none}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Sucio Records, inicio"><img src="assets/logo-ink.png" alt="Sucio Records"></a>
+    <nav aria-label="Principal">
+      <a href="#agenda">Agenda</a>
+      <a href="#tienda">Tienda</a>
+      <a href="#artistas">Artistas</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#blog">Blog</a>
+    </nav>
+    <a class="btn wa ph" href="https://wa.me/570000000000" title="Número de WhatsApp por confirmar">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- HERO → próximo evento → entradas -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <img class="logo" src="assets/logo-ink.png" alt="Sucio Records">
+      <p class="tag">Sello de lofi &amp; hip-hop abstracto · Cali, Colombia · <em>Little rooms, great things</em></p>
+
+      <article class="event" aria-labelledby="ev-title">
+        <span class="kicker">● Próximo evento · Cali</span>
+        <h1 id="ev-title">N-Wise Allah</h1>
+        <div class="with">desde Miranda, con Car3sucio &amp; L1ber.man · lanzamiento del mixtape <strong>SLEEP</strong></div>
+        <dl>
+          <dt>Fecha</dt><dd>Viernes 6 de noviembre de 2026, 8:00 p.m.</dd>
+          <dt>Lugar</dt><dd>Sala Madame Blue · Av. 9N #15N-39, Granada / Juanambú</dd>
+          <dt>Entrada</dt><dd>$55.000 COP en preventa (hasta el 5 de nov) · $60.000 COP en taquilla</dd>
+        </dl>
+        <div class="cta">
+          <a class="btn" style="background:var(--sun);border-color:var(--sun);color:var(--ink)" href="https://n9.cl/entradasnwisecali" target="_blank" rel="noopener">Comprar entradas</a>
+          <button class="btn nequi" type="button" data-nequi="N-Wise Allah · 6 nov · $55.000">Pagar con Nequi</button>
+          <a class="btn ghost" href="https://wa.me/570000000000?text=Hola%2C%20quiero%20entradas%20para%20N-Wise%20Allah%20el%206%20de%20noviembre">Reservar por WhatsApp</a>
+        </div>
+        <p class="org">Organiza @caughtforeva · Sucio Records en la tarima</p>
+      </article>
+    </div>
+
+    <div class="hero-side">
+      <figure class="flyer" style="margin:0">
+        <img src="assets/flyer-nwise.jpg" alt="Flyer del mixtape SLEEP en un beeper de PlayStation">
+        <figcaption>Mixtape SLEEP · solo se escucha en vivo</figcaption>
+      </figure>
+      <div class="hero-photo">
+        <img src="assets/car3sucio.jpg" alt="Car3sucio con un ramo de flores en lugar de la cara, frente a un grafiti">
+        <img src="assets/street-low.jpg" alt="Car3sucio y Literario Torres en una calle de Cali" style="object-position:50% 30%">
+      </div>
+    </div>
+  </div>
+
+  <!-- the drain: rejilla de alcantarilla con matas creciendo -->
+  <div class="drain-band" aria-hidden="true">
+    <img src="assets/drain-band.svg" alt="">
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="agenda" id="agenda">
+  <div class="wrap">
+    <div class="head">
+      <h2>Agenda</h2>
+      <span class="kicker" style="color:#a9b8c2">Shows, sesiones y fechas del sello</span>
+    </div>
+    <div class="gigs">
+      <div class="gig">
+        <div class="date">23<small>oct · vie</small></div>
+        <div><h3>El Kalvo · Car3sucio · La Muchacha</h3><p>Manizales · Silmaril · fecha reprogramada. Parte de la boletería va a la escuela de música de El Águila, Valle, y se reciben donaciones para damnificados del sismo.</p></div>
+        <a class="state off" style="text-decoration:none" href="https://www.instagram.com/car3sucio/" target="_blank" rel="noopener">Info en IG</a>
+      </div>
+      <div class="gig">
+        <div class="date">06<small>nov · vie</small></div>
+        <div><h3>N-Wise Allah + Car3sucio &amp; L1ber.man</h3><p>Sala Madame Blue, Cali · 8:00 p.m. · $55.000</p></div>
+        <a class="state on" style="text-decoration:none" href="https://n9.cl/entradasnwisecali" target="_blank" rel="noopener">Entradas</a>
+      </div>
+      <div class="gig">
+        <div class="date">18–19<small>sep · 2026</small></div>
+        <div><h3>DBEN en Cali: N. Hardem &amp; Mismo Perro</h3><p>Carne Débil, San Fernando Viejo. Car3sucio &amp; amigos. Con DBEN y Discos Fiera.</p></div>
+        <span class="state off">Pasó · agotado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIENDA: vinilo / merch -->
+<section class="block" id="tienda">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Tienda</span><h2>Vinilo, discos<br>&amp; merch</h2></div>
+      <p>Ediciones físicas cortas, hechas en Cali. Pagas por Nequi o separas por WhatsApp; lo digital vive en Bandcamp.</p>
+    </div>
+    <div class="shop-grid">
+      <article class="item">
+        <div class="pic"><img src="assets/brea.jpg" alt="Portada de BREA, textura de brea negra con la palabra BREA"><span class="badge">Edición limitada</span></div>
+        <div class="body">
+          <span class="fmt">EP · físico</span>
+          <h3>BREA</h3>
+          <p class="note">Literario Torres × Car3sucio. Lo recaudado va a las comunidades de López de Micay, Cauca.</p>
+          <div class="row"><span class="price ph">$ por confirmar</span><button class="btn nequi" type="button" data-nequi="BREA EP físico">Nequi</button></div>
+        </div>
+      </article>
+      <article class="item">
+        <div class="pic"><img src="assets/bagazo.jpg" alt="Portada de Bagazo Beat Tape: figura con gorra negra y flores"><span class="badge" style="background:var(--leaf)">Vinilo · propuesta</span></div>
+        <div class="body">
+          <span class="fmt">Beat tape · 21 cortes</span>
+          <h3>Bagazo</h3>
+          <p class="note">Car3sucio, 2022–2023. Digital en Bandcamp hoy; prensaje en vinilo por definir.</p>
+          <div class="row"><span class="price">Digital</span><a class="btn" href="https://suciorecords.bandcamp.com/album/bagazo" target="_blank" rel="noopener">Bandcamp</a></div>
+        </div>
+      </article>
+      <article class="item">
+        <div class="pic"><img src="assets/merch-caps.jpg" alt="Gorras de Sucio Records sobre una mesa verde"></div>
+        <div class="body">
+          <span class="fmt">Merch</span>
+          <h3>Gorra Sucio</h3>
+          <p class="note ph">Foto de referencia. Diseño, colores y tallas por confirmar.</p>
+          <div class="row"><span class="price ph">$ por confirmar</span><button class="btn nequi" type="button" data-nequi="Gorra Sucio">Nequi</button></div>
+        </div>
+      </article>
+      <article class="item">
+        <div class="pic"><img src="assets/poster-dben.jpg" alt="Afiche de N. Hardem y Mismo Perro en Cali, 18 de septiembre"></div>
+        <div class="body">
+          <span class="fmt">Afiche · propuesta</span>
+          <h3>Afiche DBEN Cali</h3>
+          <p class="note">Arte de @yodax____, del show agotado en Carne Débil.</p>
+          <div class="row"><span class="price ph">$ por confirmar</span><button class="btn nequi" type="button" data-nequi="Afiche DBEN Cali">Nequi</button></div>
+        </div>
+      </article>
+    </div>
+    <div class="pay-strip">
+      <p><strong>¿Cómo comprar?</strong> Paga por Nequi y manda el comprobante por WhatsApp. <span class="ph">Envíos y puntos de entrega por confirmar.</span></p>
+      <button class="btn nequi" type="button" data-nequi="Tienda Sucio">Pagar con Nequi</button>
+      <a class="btn wa ph" href="https://wa.me/570000000000?text=Hola%2C%20quiero%20comprar%20en%20la%20tienda">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ARTISTAS → bandcamp -->
+<section class="block artists" id="artistas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Artistas</span><h2>Car3sucio<br>&amp; amigos</h2></div>
+      <p>Productores, raperos y bateristas de Cali. Cada artista tendrá su propia página, y el catálogo completo está en Bandcamp.</p>
+    </div>
+    <div class="roster">
+      <a class="artist" href="https://www.instagram.com/car3sucio/" target="_blank" rel="noopener">
+        <div class="face"><img src="assets/car3sucio.jpg" alt="Car3sucio"></div>
+        <div class="meta"><h3>Car3sucio</h3><span class="role">Beatmaker · productor · fundador</span>
+          <div class="links"><span>IG ↗</span><span>Bandcamp ↗</span></div></div>
+      </a>
+      <a class="artist" href="https://www.instagram.com/literariotorres/" target="_blank" rel="noopener">
+        <div class="face"><img src="assets/graffiti-duo-2.jpg" alt="Literario Torres frente a un grafiti" style="object-position:72% 50%"></div>
+        <div class="meta"><h3>Literario Torres</h3><span class="role">MC · BREA EP</span>
+          <div class="links"><span>IG ↗</span></div></div>
+      </a>
+      <a class="artist" href="https://www.instagram.com/maleza.rap/" target="_blank" rel="noopener">
+        <span class="flag">Página propia en camino</span>
+        <div class="face"><img src="assets/maleza.jpg" alt="Maleza con flores naranjas" style="object-position:50% 30%"></div>
+        <div class="meta"><h3>Maleza</h3><span class="role">Rap · slam · poesía</span>
+          <div class="links"><span>IG ↗</span></div></div>
+      </a>
+      <a class="artist" href="https://www.instagram.com/osound_bwoy/" target="_blank" rel="noopener">
+        <div class="face"><img src="assets/osound.jpg" alt="O'Sound Bwoy" style="object-position:55% 25%"></div>
+        <div class="meta"><h3>O'Sound Bwoy</h3><span class="role">Zalama Crew · DJ · Cali Dancehall</span>
+          <div class="links"><span>IG ↗</span></div></div>
+      </a>
+      <a class="artist" href="https://www.instagram.com/attababilans/" target="_blank" rel="noopener">
+        <div class="face"><img src="assets/attababilans.jpg" alt="Atta Babilans en tarima" style="object-position:50% 25%"></div>
+        <div class="meta"><h3>Atta Babilans</h3><span class="role">El flow isleño · La Gran Hambruna</span>
+          <div class="links"><span>IG ↗</span></div></div>
+      </a>
+      <a class="artist" href="https://www.instagram.com/01lucky_luciano/" target="_blank" rel="noopener">
+        <div class="face"><img src="assets/lucky-luciano.jpg" alt="Lucky Luciano con pasamontañas y micrófono" style="object-position:45% 40%"></div>
+        <div class="meta"><h3>Lucky Luciano</h3><span class="role">Rapero · cocinero · contador de historias</span>
+          <div class="links"><span>IG ↗</span></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO / PORTAFOLIO -->
+<section class="block" id="catalogo">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Catálogo</span><h2>La cosecha<br>sonora</h2></div>
+      <p>Todo lo que ha salido del sello: lanzamientos, sesiones y créditos de producción, mezcla y máster.</p>
+    </div>
+    <div class="cat">
+      <article class="release">
+        <div class="cover"><img src="assets/bagazo.jpg" alt="Portada de Bagazo"></div>
+        <div>
+          <span class="kicker" style="color:var(--moss-deep)">SR-001 · 18 may 2025</span>
+          <h3>Bagazo</h3>
+          <div class="facts"><span class="chip g">Beat tape</span><span class="chip">Car3sucio</span><span class="chip">21 cortes</span><span class="chip">Lofi / abstracto</span></div>
+          <p>Beats que habían quedado guardados entre 2022 y 2023, como el bagazo: el resto de la caña que parece inútil y está lleno de textura y memoria. El primer paso del sello en su cosecha sonora.</p>
+          <ol class="tracks">
+            <li>Polizón</li><li>Agapito</li><li>Orquídeas</li><li>Siloé</li><li>A la lata</li><li>Snave Llib</li><li>MCEE</li>
+            <li>St Rosa</li><li>Westchester</li><li>Rochechouart</li><li>ODB</li><li>Vasudeva</li><li>Corazón</li><li>Paterson</li>
+            <li>Bs As</li><li>Dijon</li><li>HIL</li><li>L.A</li><li>Otis</li><li>Dilla</li><li>Xehpa</li>
+          </ol>
+          <iframe class="bc-embed" title="Bagazo en Bandcamp" src="https://bandcamp.com/EmbeddedPlayer/album=2294488980/size=small/bgcol=e7e2d6/linkcol=3f5a2c/transparent=true/" seamless loading="lazy"></iframe>
+          <p class="credits">Producido por Car3sucio · Mezcla y máster en Sucio Records · Arte de Ivonn sin E</p>
+        </div>
+      </article>
+
+      <article class="release dark">
+        <div class="cover"><img src="assets/brea-tracklist.jpg" alt="Tracklist de BREA escrito sobre unas manos"></div>
+        <div>
+          <span class="kicker" style="color:var(--sun)">SR-002 · 17 sep 2026</span>
+          <h3>BREA</h3>
+          <div class="facts"><span class="chip g">EP</span><span class="chip">Literario Torres × Car3sucio</span><span class="chip">En todas las plataformas</span></div>
+          <p>Mezcla de Car3sucio, máster en Sucio Records. Copias físicas limitadas; lo recaudado va a las comunidades de López de Micay, en el Cauca.</p>
+          <p class="credits">Foto: @willacid · <span class="ph">Enlace a plataformas por confirmar</span></p>
+        </div>
+      </article>
+
+      <div class="mini-releases">
+        <div class="mini"><img src="assets/crudas-sesiones.jpg" alt="Crudas Sesiones" style="object-position:50% 40%"><div><span class="kicker" style="color:var(--moss-deep)">Video · serie</span><h3>Crudas Sesiones</h3><p>Sesiones en vivo. Ep. con O'Sound Bwoy (Zalama Crew), batería de Car3sucio, video de El Puente.</p></div></div>
+        <div class="mini"><img src="assets/flyer-nwise.jpg" alt="Mixtape SLEEP"><div><span class="kicker" style="color:var(--moss-deep)">Mixtape · 2026</span><h3>SLEEP</h3><p>Car3sucio &amp; L1ber.man sobre N-Wise Allah, con intro y outro de voces cortadas. Solo se escucha en vivo.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" aria-label="Manifiesto">
+  <div class="wrap">
+    <blockquote>Lo que queda después del proceso: <em>lo que persiste y fermenta.</em></blockquote>
+    <cite>Sucio Records · Bagazo, 2025</cite>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="block" id="blog">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="kicker">Blog</span><h2>Desde la<br>alcantarilla</h2></div>
+      <p>Crónicas de shows, notas de producción y lo que se mueve en la escena de Cali.</p>
+    </div>
+    <div class="posts">
+      <a class="post" href="#blog">
+        <img src="assets/show-dben.jpg" alt="Público y artistas en el show DBEN en Cali">
+        <div class="body"><span class="kicker">Crónica · sep 2026</span><h3>Dios bendiga este negocio</h3><p>Dos fechas en Cali con N. Hardem y Mismo Perro, la primera agotada. Cómo se movió el show a Carne Débil después del sismo, y quiénes subieron a la tarima.</p></div>
+      </a>
+      <a class="post" href="#blog">
+        <img src="assets/brea-kids.jpg" alt="Niños de López de Micay en la portada de BREA" style="object-position:50% 40%">
+        <div class="body"><span class="kicker">Lanzamiento · sep 2026</span><h3>BREA va pa López de Micay</h3><p>Por qué el primer EP físico del sello financia a las comunidades del Cauca.</p></div>
+      </a>
+      <a class="post" href="#blog">
+        <img src="assets/car3-drums.jpg" alt="Car3sucio tocando batería en el estudio" style="object-position:50% 35%">
+        <div class="body"><span class="kicker">Estudio</span><h3>Bagazo, corte por corte</h3><p>21 beats guardados que encontraron su cauce.</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img class="logo" src="assets/logo-ink.png" alt="Sucio Records">
+        <p style="margin-top:16px;color:#c9c5b8;font-size:15px;max-width:300px">Sello de lofi &amp; hip-hop abstracto. Cali, Colombia.</p>
+      </div>
+      <div><h4>Escuchar</h4><ul>
+        <li><a href="https://suciorecords.bandcamp.com/" target="_blank" rel="noopener">Bandcamp</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+      </ul></div>
+      <div><h4>Seguir</h4><ul>
+        <li><a href="https://www.instagram.com/sucio.records/" target="_blank" rel="noopener">@sucio.records</a></li>
+        <li><a href="https://www.instagram.com/car3sucio/" target="_blank" rel="noopener">@car3sucio</a></li>
+        <li><a href="https://www.instagram.com/discosfiera/" target="_blank" rel="noopener">@discosfiera</a> <span style="color:#8d897d">· electrónica / afrobeats</span></li>
+      </ul></div>
+      <div><h4>Contacto</h4><ul>
+        <li><a class="ph" href="https://wa.me/570000000000">WhatsApp</a></li>
+        <li><button class="btn nequi" type="button" data-nequi="Sucio Records" style="padding:8px 12px;font-size:12px">Nequi</button></li>
+      </ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Sucio Records · Todos los derechos reservados</span><span>Little rooms, great things</span></div>
+  </div>
+</footer>
+
+<dialog id="nequi" aria-labelledby="nq-title">
+  <div class="in">
+    <h3 id="nq-title">Pagar con Nequi</h3>
+    <p class="kicker" id="nq-item" style="margin-bottom:14px">—</p>
+    <div class="num ph">300 000 0000</div>
+    <ol>
+      <li>Abre Nequi y envía el valor a este número.</li>
+      <li>Toma captura del comprobante.</li>
+      <li>Mándala por WhatsApp con tu nombre y lo que compraste.</li>
+    </ol>
+    <div class="row">
+      <a class="btn wa" id="nq-wa" href="https://wa.me/570000000000">Enviar comprobante</a>
+      <button class="btn ghost" type="button" id="nq-close">Cerrar</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var dlg=document.getElementById('nequi');
+  var item=document.getElementById('nq-item');
+  var wa=document.getElementById('nq-wa');
+  document.querySelectorAll('[data-nequi]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var what=b.getAttribute('data-nequi');
+      item.textContent=what;
+      wa.href='https://wa.me/570000000000?text='+encodeURIComponent('Hola, pagué por Nequi: '+what+'. Va el comprobante.');
+      if(dlg.showModal) dlg.showModal();
+    });
+  });
+  document.getElementById('nq-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg) dlg.close()});
+})();
+</script>
+</body>
+</html>

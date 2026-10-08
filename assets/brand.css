@@ -1,0 +1,46 @@
+/* Sucio Records brand layer. Shared by the website and print pieces (one-sheets, flyers).
+   Rules and usage live in DESIGN.md. Change a token here, not in a page. */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap");
+
+:root{
+  --paper:#e7e2d6;
+  --paper-2:#dcd6c7;
+  --ink:#161614;
+  --ink-soft:#4a4842;
+  --moss:#6f8f4e;
+  --moss-deep:#3f5a2c;
+  --leaf:#8fb26a;
+  --drain:#1d4660;
+  --drain-deep:#0f2a3a;
+  --drain-wet:#2c6283;
+  --sun:#f2c230;
+  --petal:#f0b6c4;
+  --nequi:#e5007d;
+  --whatsapp:#1f7a4d;
+  --muted-on-dark:#a9a597;
+  --line:rgba(22,22,20,.16);
+  --radius:6px;
+  --max:1180px;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+  --body:"Work Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+/* paper grain over everything */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{max-width:100%;display:block}
+a{color:inherit}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:.01em;margin:0;text-transform:uppercase}
+p{margin:0 0 1em}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:14px 18px;border-radius:var(--radius);border:2px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--moss)}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.nequi{background:var(--nequi);border-color:var(--nequi);color:#fff}
+.btn.wa{background:var(--whatsapp);border-color:var(--whatsapp);color:#fff}
+.btn svg{width:18px;height:18px;flex:none}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--ink)}
+.chip.g{background:var(--leaf);box-shadow:none}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}

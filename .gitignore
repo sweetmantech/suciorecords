@@ -1,0 +1,4 @@
+# Print pieces (proposals, one-sheets) stay private; see DESIGN.md
+print/
+.vercel
+.DS_Store
